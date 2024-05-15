@@ -13,7 +13,7 @@ const config: GatsbyConfig = {
     siteHeadline: `거시코딩학💰`,
     siteUrl: `https://stu442.github.io/`,
     siteDescription: `주로 프론트엔드와 생산성에 대한 흥미롭고 재미있는 이야기를 다루는 기술 블로그입니다.`,
-    siteImage: `/banner.jpg`,
+    siteImage: `/banner.png`,
     siteLanguage: `kr`,
     author: `@GJG`,
   },
