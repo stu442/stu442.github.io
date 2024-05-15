@@ -53,7 +53,6 @@ const PostFooter = ({ post }: MBPostProps) => {
         script.setAttribute("data-input-position", "top");
         script.setAttribute("data-theme", getColorMode());
         script.setAttribute("data-lang", "ko");
-        script.setAttribute("data-loading", "lazy");
         script.setAttribute("crossorigin", "anonymous");
         script.async = true;
 
