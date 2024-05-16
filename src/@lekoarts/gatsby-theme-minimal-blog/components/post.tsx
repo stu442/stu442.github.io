@@ -6,6 +6,7 @@ import Layout from "@lekoarts/gatsby-theme-minimal-blog/src/components/layout"
 import ItemTags from "@lekoarts/gatsby-theme-minimal-blog/src/components/item-tags"
 import Seo from "@lekoarts/gatsby-theme-minimal-blog/src/components/seo"
 import PostFooter from "./post-footer"
+import { motion, useScroll } from "framer-motion"
 
 export type MBPostProps = {
   post: {
@@ -33,8 +34,21 @@ export type MBPostProps = {
 const px = [`16px`, `8px`, `4px`]
 const shadow = px.map((v) => `rgba(0, 0, 0, 0.1) 0px ${v} ${v} 0px`)
 
-const Post: React.FC<React.PropsWithChildren<PageProps<MBPostProps>>> = ({ data: { post }, children }) => (
+const Post: React.FC<React.PropsWithChildren<PageProps<MBPostProps>>> = ({ data: { post }, children }) => {
+  const { scrollYProgress } = useScroll();
+  return (
   <Layout>
+    <motion.div sx={{
+      position: `fixed`,
+      top: 0,
+      left: 0,
+      right: 0,
+      height: `5px`,
+      backgroundColor: `primary`,
+      transformOrigin: `left`,
+      zIndex: 1,
+    }} 
+    style={{ scaleX: scrollYProgress }} />
     <Heading as="h1" variant="styles.h1">
       {post.title}
     </Heading>
@@ -67,7 +81,8 @@ const Post: React.FC<React.PropsWithChildren<PageProps<MBPostProps>>> = ({ data:
     </section>
     <PostFooter post={post} />
   </Layout>
-)
+  )
+}
 
 export default Post
 

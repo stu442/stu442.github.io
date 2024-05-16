@@ -32,6 +32,10 @@ const config: GatsbyConfig = {
             title: `About`,
             slug: `/about`,
           },
+          {
+            title: `Tags`,
+            slug: `/tags`,
+          }
         ],
         externalLinks: [
           {
@@ -130,6 +134,12 @@ const config: GatsbyConfig = {
             title: `Minimal Blog - @lekoarts/gatsby-theme-minimal-blog`,
           },
         ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-svgr`,
+      options: {
+        icon: true, // SVG를 컴포넌트로 가져올 수 있게 해줍니다.
       },
     },
     // You can remove this plugin if you don't need it
