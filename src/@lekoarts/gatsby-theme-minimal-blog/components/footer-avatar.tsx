@@ -7,10 +7,10 @@ import { ReactComponent as Velog } from "../../../../static/Icons/velog.svg"
 import { ReactComponent as Threads } from "../../../../static/Icons/threads.svg"
 
 const FooterAvatar = () => (
-        <Flex sx={{ alignItems: `center` }}>
+        <Flex sx={{ alignItems: `center`, mb: 4 }}>
             <Image src="/Images/profileImg.PNG" alt="profile image" sx={{
-                width: 120,
-                height: 120,
+                maxWidth: 120,
+                height: "auto",
                 borderRadius: "50%",
                 boxShadow: `lg`,
                 marginRight: 4,
