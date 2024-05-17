@@ -46,10 +46,6 @@ const config: GatsbyConfig = {
             name: `Github`,
             url: `https://github.com/stu442`,
           },
-          {
-            name: `이전 블로그`,
-            url: `https://velog.io/@stu442/posts`,
-          },
         ],
       },
     },
