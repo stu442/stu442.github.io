@@ -139,6 +139,12 @@ const config: GatsbyConfig = {
         icon: true, // SVG를 컴포넌트로 가져올 수 있게 해줍니다.
       },
     },
+    {
+      resolve: 'gatsby-plugin-google-gtag',
+      options: {
+        trackingIds: ['G-2ZR42D3VS3'],
+      },
+    },
     // You can remove this plugin if you don't need it
     shouldAnalyseBundle && {
       resolve: `gatsby-plugin-webpack-statoscope`,
