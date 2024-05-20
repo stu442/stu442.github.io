@@ -1,0 +1,150 @@
+---
+title: CSS 로 만든 카드 홀로그램 효과 ㄷㄷ
+date: 2024-05-16
+tags:
+  - CSS
+---
+
+## 🐸 미리보기
+
+![결과물](./pepegif.gif)
+
+## 🧑‍💻 깃허브 링크
+
+[Github 실습 링크](https://github.com/stu442/codingapple_cardCSS)
+
+## CSS 속성 알아보기
+
+### transform :  perspective(), rotateY(), rotateX()
+
+> CSS `transform` 속성으로 요소에 회전, 크기 조절, 기울이기, 이동 효과를 부여할 수 있습니다. `transform`은 CSS 시각적 서식 모델의 좌표 공간을 변경합니다.
+
+[출처 : mdn transform 문서](https://developer.mozilla.org/ko/docs/Web/CSS/transform)
+
+#### perspective()
+
+> The perspective CSS property determines the distance between the z=0 plane and the user in order to give a 3D-positioned element some perspective.
+> 
+>`perspective` 속성은 배치된 요소에 원근감을 z=0 평면과 사용자 사이의 거리를 결정합니다.
+
+[출처 : mdn perspective 문서](https://developer.mozilla.org/en-US/docs/Web/CSS/perspective)
+
+즉 perspective()는 요소에 원근감을 주는 속성입니다.
+평면과 사용자 사이의 거리를 만들어 원근감을 표현합니다.
+
+위 예시에서는 "perspective(1000px)"을 사용해서 1000px 떨어져 보이게 했습니다.
+
+#### rotateY(), rotateX()
+
+>The rotateX() CSS function defines a transformation that rotates an element around the x-axis (horizontal) without deforming it. Its result is a transform-function data type.
+>
+>rotateX() 함수는 요소를 변형하지 않고, X축(가로)를 중심으로 회전하는 변형을 정의합니다. 그 결과는 transform-function 데이터 유형입니다.
+
+[출처 : mdn rotateX 문서](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateX)
+
+X의 경우는 X축을 접는다는 느낌(수직 방향)으로 접히게 됩니다.
+
+반대로 Y의 경우는 Y축을 접는다는 느낌(수평 방향)으로 접히게 됩니다.
+
+출처를 눌러 시각적으로 확인하면 좋습니다.
+
+~~~javascript
+  container.addEventListener('mousemove', (e) => {
+    let x = e.offsetX;
+    let y = e.offsetY;
+    let rotateY = 0.05 * x - 20;
+    let rotateX = 0.05 * y - 20;
+
+	overlay.style = `background-position : ${x/3 + y/3}%`
+
+	container.style = `transform : perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+})
+~~~
+
+위 예시에서는, 마우스를 올렸을때 사진을 돌아가게 하는 용도로 사용했습니다.
+마우스의 x, y 좌표를 계산하여 최대 20도, 최소 -20도까지 돌아갑니다.
+
+### mix-blend-mode
+
+해당 속성은, 포토샵을 해본 사람이라면 알만한 multiply, screen 등과 같이 *블렌더 효과*를 입힙니다.
+
+```css
+mix-blend-mode: normal;
+mix-blend-mode: multiply;
+mix-blend-mode: screen;
+mix-blend-mode: overlay;
+mix-blend-mode: darken;
+mix-blend-mode: lighten;
+mix-blend-mode: color-dodge;
+mix-blend-mode: color-burn;
+mix-blend-mode: hard-light;
+mix-blend-mode: soft-light;
+mix-blend-mode: difference;
+mix-blend-mode: exclusion;
+mix-blend-mode: hue;
+mix-blend-mode: saturation;
+mix-blend-mode: color;
+mix-blend-mode: luminosity;
+```
+
+### filter
+
+>The filter CSS property applies graphical effects like blur or color shift to an element. Filters are commonly used to adjust the rendering of images, backgrounds, and borders.
+>
+>Several functions, such as blur() and contrast(), are available to help you achieve predefined effects.
+>
+>filter 속성은 요소에 흐림 또는 색상 이동과 같은 그래픽 효과를 적용합니다. filter는 일반적으로 이미지, 배경 및 테두리의 렌더링을 조정하는 데 사용됩니다.
+>
+>blur() 와 contrast()와 같은 여러 함수를 사용하여 미리 정의된 효과를 얻을 수 있습니다.
+
+[mdn filter 공식 문서](https://developer.mozilla.org/en-US/docs/Web/CSS/filter)
+
+위 예시에서는 overlay의 밝기와 투명도를 조정하는 데 사용했습니다.
+
+~~~css
+filter: brightness(1.0) opacity(0.9);
+~~~
+
+### background-position
+
+>The background-position CSS property sets the initial position for each background image. The position is relative to the position layer set by background-origin.
+>
+>background-position 속성은 각 배경 이미지의 초기 위치를 설정합니다. 위치는 background-origin 설정된 위치 레이어에 상대적입니다.
+
+[mdn background-position 공식 문서](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)
+
+background 위치를 정하는 속성입니다.
+
+위 예시에서는 overlay를 이동시키기 위해 사용했습니다.
+
+~~~javascript
+overlay.style = `background-position : ${x/3 + y/3}%`
+~~~
+
+### background-size
+
+>The background-size CSS property sets the size of the element's background image. The image can be left to its natural size, stretched, or constrained to fit the available space.
+>
+>background-size 속성은 요소의 배경 이미지 크기를 설정합니다. 이미지는 자연스러운 크기로 두거나, 늘리거나, 사용 가능한 공간에 맞게 제한할 수 있습니다.
+
+[mdn background-size 공식 문서](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size)
+
+배경 사이즈를 결정하는 속성입니다.
+
+위 예시에서는 cover 를 통해 card 사이즈를 박스 크기에 맞추거나, overlay 크기를 1.5배 키우는 용도로 사용했습니다.
+
+~~~css
+background-size: cover;
+
+background-size: 150% 150%;
+~~~
+
+주의해야할 부분은 contain과 cover 입니다.
+
+cover는 비율을 맞추나, 비율이 다르면 *잘립니다*. 하지만 contain은 이미지를 완벽하게 맞추나, *공백*이 생길 수 있습니다.
+
+상황에 따라 알맞게 사용합니다.
+
+## 📌 참고자료
+
+[유튜브, 코딩애플](https://www.youtube.com/watch?v=YDCCauu4lIk&t=319s)

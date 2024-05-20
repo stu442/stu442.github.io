@@ -47,6 +47,7 @@ const config: GatsbyConfig = {
             url: `https://github.com/stu442`,
           },
         ],
+        formatString: `YYYY.MM.DD`,
       },
     },
     {
